@@ -1,4 +1,4 @@
-package ru.game.spore.gameManagers;
+package ru.game.spore.generators;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;

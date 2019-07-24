@@ -1,4 +1,4 @@
-package ru.game.spore.background;
+package ru.game.spore.resources.background;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import ru.game.spore.Resources;
+import ru.game.spore.resources.Resources;
 
 
 public class BackgroundFXRenderer {

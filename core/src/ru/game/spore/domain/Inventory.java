@@ -1,4 +1,4 @@
-package ru.game.spore.inventoryObject;
+package ru.game.spore.domain;
 
 /**
  * Created by 1 on 17.04.2016.

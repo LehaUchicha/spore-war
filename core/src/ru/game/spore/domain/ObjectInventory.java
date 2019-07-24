@@ -1,7 +1,7 @@
-package ru.game.spore.inventoryObject;
+package ru.game.spore.domain;
 
 import com.badlogic.gdx.graphics.Texture;
-import ru.game.spore.gameObject.Hero;
+import ru.game.spore.domain.Hero;
 
 /**
  * Created by 1 on 17.04.2016.

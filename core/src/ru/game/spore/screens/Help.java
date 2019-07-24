@@ -15,25 +15,29 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
-import ru.game.spore.background.BackgroundFXRenderer;
+import ru.game.spore.resources.background.BackgroundFXRenderer;
 
-import ru.game.spore.Resources;
+import ru.game.spore.resources.Resources;
 import ru.game.spore.GameInstance;
-
 
 public class Help extends DefaultScreen implements InputProcessor {
 	
 	Sprite back;
 	
 	BoundingBox collisionBack = new BoundingBox();
+
 	BoundingBox collisionMusic = new BoundingBox();
 
 	Sprite fighter;
+
 	Sprite bomber;
+
 	Sprite frigate;
+
 	Sprite upgrade;
 	
 	BackgroundFXRenderer backgroundFX = new BackgroundFXRenderer();
+
 	Sprite blackFade;
 
 	OrthographicCamera cam;
@@ -41,6 +45,7 @@ public class Help extends DefaultScreen implements InputProcessor {
 	BitmapFont font;
 	
 	SpriteBatch titleBatch;
+
 	SpriteBatch fadeBatch;
 	
 	Ray collisionRay;
@@ -48,9 +53,11 @@ public class Help extends DefaultScreen implements InputProcessor {
 	boolean finished = false;
 	
 	float time = 0;
+
 	float fade = 1.0f;
 
 	private int width = 800;
+
 	private int height = 480;
 
 	public Help(Game game) {
@@ -74,7 +81,6 @@ public class Help extends DefaultScreen implements InputProcessor {
 		fighter.setRotation(0);
 		bomber = new Sprite(new Texture(Gdx.files.internal("data/sprites/vir2.png")));
 		bomber.setRotation(0);
-
 		
 		titleBatch = new SpriteBatch();
 		titleBatch.getProjectionMatrix().setToOrtho2D(0, 0, 800, 480);

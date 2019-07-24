@@ -1,4 +1,4 @@
-package ru.game.spore.gameObject;
+package ru.game.spore.domain;
 
     public enum Level {
         ZERO(){

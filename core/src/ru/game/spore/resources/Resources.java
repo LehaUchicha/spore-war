@@ -1,4 +1,4 @@
-package ru.game.spore;
+package ru.game.spore.resources;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;

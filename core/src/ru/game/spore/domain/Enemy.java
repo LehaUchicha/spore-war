@@ -1,11 +1,11 @@
-package ru.game.spore.gameObject;
+package ru.game.spore.domain;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import ru.game.spore.gameManagers.HeroAnimation;
+import ru.game.spore.resources.animation.HeroAnimation;
 
 /**
  * Created by Alex on 04.05.2016.

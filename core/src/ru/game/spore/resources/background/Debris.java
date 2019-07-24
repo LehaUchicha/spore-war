@@ -1,11 +1,11 @@
-package ru.game.spore.background;
+package ru.game.spore.resources.background;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import ru.game.spore.Resources;
+import ru.game.spore.resources.Resources;
 
 
 public class Debris extends Sprite {

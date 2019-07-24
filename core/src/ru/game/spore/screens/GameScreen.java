@@ -20,12 +20,12 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import ru.game.spore.*;
-import ru.game.spore.gameManagers.EnemyFactory;
-import ru.game.spore.gameManagers.FoodGenerator;
-import ru.game.spore.gameManagers.HeroAnimation;
-import ru.game.spore.gameObject.Enemy;
-import ru.game.spore.gameObject.Hero;
+import ru.game.spore.generators.EnemyGenerator;
+import ru.game.spore.generators.FoodGenerator;
+import ru.game.spore.resources.animation.HeroAnimation;
+import ru.game.spore.domain.Enemy;
+import ru.game.spore.domain.Hero;
+import ru.game.spore.resources.Resources;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,23 +33,30 @@ import java.util.Iterator;
 
 public class GameScreen extends DefaultScreen implements InputProcessor {
 
-
     private OrthographicCamera cam;
+
     private SpriteBatch batch;
+
     float stateTime = 0f;
 
     private Sprite foodImage;
+
     private Sprite mapSprite;
 
     private Sprite weapon;
+
     private BitmapFont font;
 
     BoundingBox collisionGenomAbility = new BoundingBox();
+
     private float rotationSpeed;
+
     private FoodGenerator foodGenerator;
-    private EnemyFactory enemyFactory;
+
+    private EnemyGenerator enemyGenerator;
 
     private float fade = 1.0f;
+
     private Sprite blackFade;
 
     private Hero player;
@@ -57,6 +64,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
     SpriteBatch fadeBatch;
 
     private boolean gameOver = false;
+
     private float gameOverTimer = 5;
 
     int numPlayers = 0;
@@ -64,6 +72,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
     Ray collisionRay;
 
     private int width = 1024;
+
     private int height = 1024;
 
     public GameScreen(Game game, Array<Integer> playerList, Array<Integer> cpuList) {
@@ -90,10 +99,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
         foodGenerator = new FoodGenerator(width, height);
         foodGenerator.generate();
 
-        enemyFactory = new EnemyFactory(width, height);
-        enemyFactory.generate();
+        enemyGenerator = new EnemyGenerator(width, height);
+        enemyGenerator.generate();
         player = new Hero();
-
 
         numPlayers = playerList.size;
         if (playerList.size > 0 && playerList.get(0) == 1) {
@@ -118,7 +126,6 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
         blackFade = Resources.getInstance().blackFade;
         fadeBatch = new SpriteBatch();
         fadeBatch.getProjectionMatrix().setToOrtho2D(0, 0, 2, 2);
-
         cam.update();
         batch = new SpriteBatch();
     }
@@ -161,7 +168,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
         }
 
         player.getSprite().draw(batch);
-        for (Enemy enemy : enemyFactory.getEnemyList()) {
+        for (Enemy enemy : enemyGenerator.getEnemyList()) {
             enemy.setSprite(enemy.getH1(), stateTime);
             enemy.moveToTarget(player);
         }
@@ -172,12 +179,10 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
 
         for (Rectangle food : foodGenerator.getFoodList()) {
             batch.draw(foodImage, food.x, food.y, foodImage.getWidth() * 2, foodImage.getHeight() * 2);
-
         }
 
-        for (Enemy enemy : enemyFactory.getEnemyList()) {
+        for (Enemy enemy : enemyGenerator.getEnemyList()) {
             batch.draw(enemy.getSprite(), enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
-
         }
         batch.end();
         cam.update();
@@ -202,8 +207,8 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
         Iterator<Rectangle> foodIter = foodGenerator.getFoodList().iterator();
         while (foodIter.hasNext()) {
             Rectangle food = foodIter.next();
-            for (int i = 0; i < enemyFactory.getEnemyList().size; i++) {
-                Enemy en = enemyFactory.getEnemyList().get(i);
+            for (int i = 0; i < enemyGenerator.getEnemyList().size; i++) {
+                Enemy en = enemyGenerator.getEnemyList().get(i);
                 if (food.y + 64 < 0) foodIter.remove();
                 if (food.overlaps(en.gerRect())) {
                     if (en.getHealth() < en.getCurrentLevel().getMaxHP()) {
@@ -220,10 +225,10 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
 
         if (TimeUtils.nanoTime() - foodGenerator.getLastGenerateTime() > 100000000)
             foodGenerator.generate();
-        if (TimeUtils.nanoTime() - enemyFactory.getLastGenerateTime() > 100000000)
-            enemyFactory.generate();
+        if (TimeUtils.nanoTime() - enemyGenerator.getLastGenerateTime() > 100000000)
+            enemyGenerator.generate();
 
-        Iterator<Enemy> enemyIter = enemyFactory.getEnemyList().iterator();
+        Iterator<Enemy> enemyIter = enemyGenerator.getEnemyList().iterator();
         while (enemyIter.hasNext()) {
             Enemy enemy = enemyIter.next();
             if (player.gerRect().overlaps(enemy.gerRect())) {
@@ -242,9 +247,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
             }
         }
 
-        for (int i = 0; i < enemyFactory.getEnemyList().size; i++) {
-            Enemy enem = enemyFactory.getEnemyList().get(i);
-            for (Enemy anotherEnemy : enemyFactory.getEnemyList()) {
+        for (int i = 0; i < enemyGenerator.getEnemyList().size; i++) {
+            Enemy enem = enemyGenerator.getEnemyList().get(i);
+            for (Enemy anotherEnemy : enemyGenerator.getEnemyList()) {
                 if (!enem.equals(anotherEnemy)) {
                     if (enem.gerRect().overlaps(anotherEnemy.gerRect())) {
                         if (TimeUtils.nanoTime() - enem.getLastAttackTime() > 1000000000)
@@ -252,7 +257,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor {
                         if (enem.getHealth() < 0) {
                             ArrayList<Enemy> delEnemy = new ArrayList<Enemy>();
                             delEnemy.add(anotherEnemy);
-                            enemyFactory.getEnemyList().removeValue(anotherEnemy, true);
+                            enemyGenerator.getEnemyList().removeValue(anotherEnemy, true);
                             enem.increseExpBy(10);
                         }
                     }

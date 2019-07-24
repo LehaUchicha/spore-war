@@ -16,9 +16,9 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.Array;
 
-import ru.game.spore.Resources;
+import ru.game.spore.resources.Resources;
 import ru.game.spore.GameInstance;
-import ru.game.spore.background.BackgroundFXRenderer;
+import ru.game.spore.resources.background.BackgroundFXRenderer;
 
 public class SingleGame extends DefaultScreen implements InputProcessor {
     Sprite back;

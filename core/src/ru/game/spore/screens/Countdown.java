@@ -4,8 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import ru.game.spore.Resources;
-
+import ru.game.spore.resources.Resources;
 
 public class Countdown extends Sprite {
 
@@ -23,7 +22,6 @@ public class Countdown extends Sprite {
 
     public Countdown(Vector2 position) {
         this.position = position;
-
         changeTexture(5);
     }
 
@@ -40,7 +38,6 @@ public class Countdown extends Sprite {
     }
 
     private void changeTexture(int id) {
-
         switch (id) {
             case 5:
                 this.set(Resources.getInstance().cnt5);

@@ -1,4 +1,4 @@
-package ru.game.spore.gameObject;
+package ru.game.spore.domain;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

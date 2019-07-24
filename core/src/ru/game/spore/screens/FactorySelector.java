@@ -7,29 +7,35 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
-import ru.game.spore.Resources;
-
+import ru.game.spore.resources.Resources;
 
 public class FactorySelector extends Sprite {
 
     public boolean picked = false;
+
     public boolean playerSelect = false;
+
     public boolean cpuSelect = false;
 
     public BoundingBox collision = new BoundingBox();
+
     public BoundingBox collisionPlayerSelect = new BoundingBox();
+
     public BoundingBox collisionCPUSelect = new BoundingBox();
+
     public Vector3 collisionMinVector = new Vector3();
+
     public Vector3 collisionMaxVector = new Vector3();
 
     private float fade = 0.2f;
+
     private float fadeButton = 0.0f;
 
     private float pulse_time = 0;
 
     private Sprite button;
-    private Sprite aPlayerButton;
 
+    private Sprite aPlayerButton;
 
     float delta;
 
@@ -87,10 +93,7 @@ public class FactorySelector extends Sprite {
 
     @Override
     public void draw(Batch batch) {
-
-
         delta = Math.min(0.06f, Gdx.graphics.getDeltaTime());
-
         super.draw(batch);
 
         collisionMinVector.set(this.getVertices()[0], this.getVertices()[1], -10);
@@ -106,7 +109,6 @@ public class FactorySelector extends Sprite {
         collisionMaxVector.set(this.getVertices()[10], this.getVertices()[11], 10);
         collisionMaxVector.y -= ((this.getVertices()[11] - this.getVertices()[1]) / 2);
         collisionCPUSelect.set(collisionMinVector, collisionMaxVector);
-
 
         pulse_time += Gdx.graphics.getDeltaTime();
 
@@ -137,7 +139,6 @@ public class FactorySelector extends Sprite {
             this.setColor(fade, fade, fade, 1);
 
             fadeButton = Math.max(fadeButton - delta, 0);
-
         }
     }
 }

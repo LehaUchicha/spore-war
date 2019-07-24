@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 
 public abstract class DefaultScreen implements Screen {
+
 	protected Game game;
 
 	public DefaultScreen(Game game) {

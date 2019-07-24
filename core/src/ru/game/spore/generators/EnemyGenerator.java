@@ -1,21 +1,21 @@
-package ru.game.spore.gameManagers;
+package ru.game.spore.generators;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
-import ru.game.spore.Resources;
-import ru.game.spore.gameObject.Enemy;
+import ru.game.spore.resources.Resources;
+import ru.game.spore.domain.Enemy;
 
 /**
  * Created by Alex on 28.04.2016.
  */
-public class EnemyFactory {
+public class EnemyGenerator {
 
     private Array<Enemy> enemies;
     private float width, height;
     private long lastDropTime;
 
-    public EnemyFactory(float width, float height){
+    public EnemyGenerator(float width, float height){
         this.width = width;
         this.height = height;
         enemies = new Array<Enemy>();

@@ -14,8 +14,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import ru.game.spore.GameInstance;
-import ru.game.spore.Resources;
-import ru.game.spore.background.BackgroundFXRenderer;
+import ru.game.spore.resources.Resources;
+import ru.game.spore.resources.background.BackgroundFXRenderer;
 
 
 public class MainMenu extends DefaultScreen implements InputProcessor {

@@ -1,4 +1,4 @@
-package ru.game.spore.gameManagers;
+package ru.game.spore.resources.animation;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
